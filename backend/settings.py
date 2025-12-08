@@ -117,7 +117,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # CORS Settings
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:8080",
-    "http://localhost:3000",
     "http://127.0.0.1:5173",
     "http://127.0.0.1:8000",
     "https://holistic-family-midwife-frontend.vercel.app",
@@ -125,7 +124,7 @@ CORS_ALLOWED_ORIGINS = [
 
 CORS_ALLOW_CREDENTIALS = True
 
-# REST Framework Settings
+#REST Framework Settings
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.AllowAny',

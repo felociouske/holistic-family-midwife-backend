@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.utils.html import format_html
-from .models import Booking, GeneralEnquiry, ContactEnquiry
+from .models import Booking, GeneralEnquiry, ContactEnquiry, BlogPost, Category, Tag, Author
 
 @admin.register(Booking)
 class BookingAdmin(admin.ModelAdmin):
@@ -151,6 +151,45 @@ class ContactEnquiryAdmin(admin.ModelAdmin):
         queryset.update(is_read=False)
     mark_as_unread.short_description = 'Mark selected as Unread'
 
+
+
+@admin.register(Category)
+class CategoryAdmin(admin.ModelAdmin):
+    list_display =['name', 'slug', 'created_at']
+    prepopulated_fields = {'slug': ('name',)}
+    search_fields = ['name']
+
+@admin.register(Author)
+class AuthorAdmin(admin.ModelAdmin):
+    list_display = ['name', 'user', 'created_at']
+    search_fields = ['name', 'user__username']
+
+@admin.register(BlogPost)
+class BlogPostAdmin(admin.ModelAdmin):
+    list_display = ['title', 'author', 'category', 'status', 'is_featured', 'published_date', 'views_count']
+    list_filter = ['status', 'is_featured', 'category', 'published_date']
+    search_fields = ['title', 'excerpt', 'content']
+    prepopulated_fields = {'slug': ('title',)}
+    filter_horizontal = ['tags']
+    date_hierarchy = 'published_date'
+    
+    fieldsets = (
+        ('Content', {
+            'fields': ('title', 'slug', 'excerpt', 'content', 'featured_image')
+        }),
+        ('Metadata', {
+            'fields': ('author', 'category', 'tags', 'reading_time')
+        }),
+        ('Publishing', {
+            'fields': ('status', 'is_featured', 'published_date')
+        }),
+        ('Statistics', {
+            'fields': ('views_count',),
+            'classes': ('collapse',)
+        }),
+    )
+    
+    readonly_fields = ['views_count']
 
 # Customize admin site
 admin.site.site_header = 'Holistic Family Midwife Admin'

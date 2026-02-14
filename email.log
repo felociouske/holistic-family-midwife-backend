@@ -88,3 +88,249 @@ resend.exceptions.ResendError: You can only send testing emails to your own emai
 INFO 2026-02-12 22:09:53,556 email_service Sending admin notification to: codeconjurer09@gmail.com
 INFO 2026-02-12 22:09:53,573 email_service Attempting to send email: New Booking Request - mentor sree to ['codeconjurer09@gmail.com']
 INFO 2026-02-12 22:09:54,704 email_service Resend Email ID: c66a5f2e-492c-4731-a400-348c1205b0f2
+INFO 2026-02-14 17:17:28,017 email_service Sending booking confirmation to: mentorsree@gmail.com
+INFO 2026-02-14 17:17:28,170 email_service Attempting to send email: Booking Confirmation - Antenatal Care & Follow-Up to ['mentorsree@gmail.com']
+ERROR 2026-02-14 17:17:30,772 email_service Full traceback:
+Traceback (most recent call last):
+  File "C:\Users\HomePC\Documents\projects\holistic-family-midwife\backend\enquiries\email_service.py", line 36, in send_email
+    email = resend.Emails.send(params)
+  File "C:\Users\HomePC\Documents\projects\holistic-family-midwife\backend\venv\Lib\site-packages\resend\emails\_emails.py", line 277, in send
+    ).perform_with_content()
+      ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\HomePC\Documents\projects\holistic-family-midwife\backend\venv\Lib\site-packages\resend\request.py", line 44, in perform_with_content
+    resp = self.perform()
+  File "C:\Users\HomePC\Documents\projects\holistic-family-midwife\backend\venv\Lib\site-packages\resend\request.py", line 35, in perform
+    raise_for_code_and_type(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        code=data.get("statusCode") or 500,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        message=data.get("message", "Unknown error"),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        error_type=data.get("name", "InternalServerError"),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\HomePC\Documents\projects\holistic-family-midwife\backend\venv\Lib\site-packages\resend\exceptions.py", line 219, in raise_for_code_and_type
+    raise ResendError(
+        code=code, message=message, error_type=error_type, suggested_action=""
+    )
+resend.exceptions.ResendError: API key is invalid
+INFO 2026-02-14 17:17:30,776 email_service Sending admin notification to: your-admin@email.com
+INFO 2026-02-14 17:17:30,811 email_service Attempting to send email: New Booking Request - mentor sree to ['your-admin@email.com']
+ERROR 2026-02-14 17:17:32,364 email_service Full traceback:
+Traceback (most recent call last):
+  File "C:\Users\HomePC\Documents\projects\holistic-family-midwife\backend\enquiries\email_service.py", line 36, in send_email
+    email = resend.Emails.send(params)
+  File "C:\Users\HomePC\Documents\projects\holistic-family-midwife\backend\venv\Lib\site-packages\resend\emails\_emails.py", line 277, in send
+    ).perform_with_content()
+      ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\HomePC\Documents\projects\holistic-family-midwife\backend\venv\Lib\site-packages\resend\request.py", line 44, in perform_with_content
+    resp = self.perform()
+  File "C:\Users\HomePC\Documents\projects\holistic-family-midwife\backend\venv\Lib\site-packages\resend\request.py", line 35, in perform
+    raise_for_code_and_type(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        code=data.get("statusCode") or 500,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        message=data.get("message", "Unknown error"),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        error_type=data.get("name", "InternalServerError"),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\HomePC\Documents\projects\holistic-family-midwife\backend\venv\Lib\site-packages\resend\exceptions.py", line 219, in raise_for_code_and_type
+    raise ResendError(
+        code=code, message=message, error_type=error_type, suggested_action=""
+    )
+resend.exceptions.ResendError: API key is invalid
+INFO 2026-02-14 17:20:36,876 email_service Sending booking confirmation to: mentorsree@gmail.com
+INFO 2026-02-14 17:20:36,877 email_service Attempting to send email: Booking Confirmation - Antenatal Care & Follow-Up to ['mentorsree@gmail.com']
+ERROR 2026-02-14 17:20:38,452 email_service Full traceback:
+Traceback (most recent call last):
+  File "C:\Users\HomePC\Documents\projects\holistic-family-midwife\backend\enquiries\email_service.py", line 36, in send_email
+    email = resend.Emails.send(params)
+  File "C:\Users\HomePC\Documents\projects\holistic-family-midwife\backend\venv\Lib\site-packages\resend\emails\_emails.py", line 277, in send
+    ).perform_with_content()
+      ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\HomePC\Documents\projects\holistic-family-midwife\backend\venv\Lib\site-packages\resend\request.py", line 44, in perform_with_content
+    resp = self.perform()
+  File "C:\Users\HomePC\Documents\projects\holistic-family-midwife\backend\venv\Lib\site-packages\resend\request.py", line 35, in perform
+    raise_for_code_and_type(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        code=data.get("statusCode") or 500,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        message=data.get("message", "Unknown error"),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        error_type=data.get("name", "InternalServerError"),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\HomePC\Documents\projects\holistic-family-midwife\backend\venv\Lib\site-packages\resend\exceptions.py", line 219, in raise_for_code_and_type
+    raise ResendError(
+        code=code, message=message, error_type=error_type, suggested_action=""
+    )
+resend.exceptions.ResendError: API key is invalid
+INFO 2026-02-14 17:20:38,457 email_service Sending admin notification to: your-admin@email.com
+INFO 2026-02-14 17:20:38,462 email_service Attempting to send email: New Booking Request - mentor sree to ['your-admin@email.com']
+ERROR 2026-02-14 17:20:40,066 email_service Full traceback:
+Traceback (most recent call last):
+  File "C:\Users\HomePC\Documents\projects\holistic-family-midwife\backend\enquiries\email_service.py", line 36, in send_email
+    email = resend.Emails.send(params)
+  File "C:\Users\HomePC\Documents\projects\holistic-family-midwife\backend\venv\Lib\site-packages\resend\emails\_emails.py", line 277, in send
+    ).perform_with_content()
+      ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\HomePC\Documents\projects\holistic-family-midwife\backend\venv\Lib\site-packages\resend\request.py", line 44, in perform_with_content
+    resp = self.perform()
+  File "C:\Users\HomePC\Documents\projects\holistic-family-midwife\backend\venv\Lib\site-packages\resend\request.py", line 35, in perform
+    raise_for_code_and_type(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        code=data.get("statusCode") or 500,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        message=data.get("message", "Unknown error"),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        error_type=data.get("name", "InternalServerError"),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\HomePC\Documents\projects\holistic-family-midwife\backend\venv\Lib\site-packages\resend\exceptions.py", line 219, in raise_for_code_and_type
+    raise ResendError(
+        code=code, message=message, error_type=error_type, suggested_action=""
+    )
+resend.exceptions.ResendError: API key is invalid
+INFO 2026-02-14 17:21:50,672 email_service Sending booking confirmation to: mentorsree@gmail.com
+INFO 2026-02-14 17:21:50,687 email_service Attempting to send email: Booking Confirmation - Antenatal Care & Follow-Up to ['mentorsree@gmail.com']
+ERROR 2026-02-14 17:21:52,446 email_service Full traceback:
+Traceback (most recent call last):
+  File "C:\Users\HomePC\Documents\projects\holistic-family-midwife\backend\enquiries\email_service.py", line 36, in send_email
+    email = resend.Emails.send(params)
+  File "C:\Users\HomePC\Documents\projects\holistic-family-midwife\backend\venv\Lib\site-packages\resend\emails\_emails.py", line 277, in send
+    ).perform_with_content()
+      ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\HomePC\Documents\projects\holistic-family-midwife\backend\venv\Lib\site-packages\resend\request.py", line 44, in perform_with_content
+    resp = self.perform()
+  File "C:\Users\HomePC\Documents\projects\holistic-family-midwife\backend\venv\Lib\site-packages\resend\request.py", line 35, in perform
+    raise_for_code_and_type(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        code=data.get("statusCode") or 500,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        message=data.get("message", "Unknown error"),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        error_type=data.get("name", "InternalServerError"),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\HomePC\Documents\projects\holistic-family-midwife\backend\venv\Lib\site-packages\resend\exceptions.py", line 219, in raise_for_code_and_type
+    raise ResendError(
+        code=code, message=message, error_type=error_type, suggested_action=""
+    )
+resend.exceptions.ResendError: You can only send testing emails to your own email address (codeconjurer09@gmail.com). To send emails to other recipients, please verify a domain at resend.com/domains, and change the `from` address to an email using this domain.
+INFO 2026-02-14 17:21:52,451 email_service Sending admin notification to: codeconjurer09@gmail.com
+INFO 2026-02-14 17:21:52,453 email_service Attempting to send email: New Booking Request - mentor sree to ['codeconjurer09@gmail.com']
+INFO 2026-02-14 17:21:54,148 email_service Resend Email ID: b7b0269e-0104-40e0-a3ba-265a619139a0
+INFO 2026-02-14 17:23:45,036 email_service Sending booking confirmation to: mentorsree@gmail.com
+INFO 2026-02-14 17:23:45,052 email_service Attempting to send email: Booking Confirmation - Consultations to ['mentorsree@gmail.com']
+ERROR 2026-02-14 17:23:47,055 email_service Full traceback:
+Traceback (most recent call last):
+  File "C:\Users\HomePC\Documents\projects\holistic-family-midwife\backend\enquiries\email_service.py", line 36, in send_email
+    email = resend.Emails.send(params)
+  File "C:\Users\HomePC\Documents\projects\holistic-family-midwife\backend\venv\Lib\site-packages\resend\emails\_emails.py", line 277, in send
+    ).perform_with_content()
+      ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\HomePC\Documents\projects\holistic-family-midwife\backend\venv\Lib\site-packages\resend\request.py", line 44, in perform_with_content
+    resp = self.perform()
+  File "C:\Users\HomePC\Documents\projects\holistic-family-midwife\backend\venv\Lib\site-packages\resend\request.py", line 35, in perform
+    raise_for_code_and_type(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        code=data.get("statusCode") or 500,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        message=data.get("message", "Unknown error"),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        error_type=data.get("name", "InternalServerError"),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\HomePC\Documents\projects\holistic-family-midwife\backend\venv\Lib\site-packages\resend\exceptions.py", line 213, in raise_for_code_and_type
+    raise error_from_list(
+    ...<3 lines>...
+    )
+resend.exceptions.ValidationError: The `from` field must be a `string`.
+INFO 2026-02-14 17:23:47,059 email_service Sending admin notification to: codeconjurer09@gmail.com,mungaimartin122@gmail.com
+INFO 2026-02-14 17:23:47,064 email_service Attempting to send email: New Booking Request - mentor sree to ['codeconjurer09@gmail.com,mungaimartin122@gmail.com']
+ERROR 2026-02-14 17:23:49,193 email_service Full traceback:
+Traceback (most recent call last):
+  File "C:\Users\HomePC\Documents\projects\holistic-family-midwife\backend\enquiries\email_service.py", line 36, in send_email
+    email = resend.Emails.send(params)
+  File "C:\Users\HomePC\Documents\projects\holistic-family-midwife\backend\venv\Lib\site-packages\resend\emails\_emails.py", line 277, in send
+    ).perform_with_content()
+      ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\HomePC\Documents\projects\holistic-family-midwife\backend\venv\Lib\site-packages\resend\request.py", line 44, in perform_with_content
+    resp = self.perform()
+  File "C:\Users\HomePC\Documents\projects\holistic-family-midwife\backend\venv\Lib\site-packages\resend\request.py", line 35, in perform
+    raise_for_code_and_type(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        code=data.get("statusCode") or 500,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        message=data.get("message", "Unknown error"),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        error_type=data.get("name", "InternalServerError"),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\HomePC\Documents\projects\holistic-family-midwife\backend\venv\Lib\site-packages\resend\exceptions.py", line 213, in raise_for_code_and_type
+    raise error_from_list(
+    ...<3 lines>...
+    )
+resend.exceptions.ValidationError: The `from` field must be a `string`.
+INFO 2026-02-14 17:26:19,277 email_service Sending booking confirmation to: mentorsree@gmail.com
+INFO 2026-02-14 17:26:19,291 email_service Attempting to send email: Booking Confirmation - Antenatal Care & Follow-Up to ['mentorsree@gmail.com']
+ERROR 2026-02-14 17:26:21,138 email_service Full traceback:
+Traceback (most recent call last):
+  File "C:\Users\HomePC\Documents\projects\holistic-family-midwife\backend\enquiries\email_service.py", line 36, in send_email
+    email = resend.Emails.send(params)
+  File "C:\Users\HomePC\Documents\projects\holistic-family-midwife\backend\venv\Lib\site-packages\resend\emails\_emails.py", line 277, in send
+    ).perform_with_content()
+      ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\HomePC\Documents\projects\holistic-family-midwife\backend\venv\Lib\site-packages\resend\request.py", line 44, in perform_with_content
+    resp = self.perform()
+  File "C:\Users\HomePC\Documents\projects\holistic-family-midwife\backend\venv\Lib\site-packages\resend\request.py", line 35, in perform
+    raise_for_code_and_type(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        code=data.get("statusCode") or 500,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        message=data.get("message", "Unknown error"),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        error_type=data.get("name", "InternalServerError"),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\HomePC\Documents\projects\holistic-family-midwife\backend\venv\Lib\site-packages\resend\exceptions.py", line 219, in raise_for_code_and_type
+    raise ResendError(
+        code=code, message=message, error_type=error_type, suggested_action=""
+    )
+resend.exceptions.ResendError: You can only send testing emails to your own email address (codeconjurer09@gmail.com). To send emails to other recipients, please verify a domain at resend.com/domains, and change the `from` address to an email using this domain.
+INFO 2026-02-14 17:26:21,143 email_service Sending admin notification to: ['codeconjurer09@gmail.com', 'mungaimartin122@gmail.com']
+INFO 2026-02-14 17:26:21,152 email_service Attempting to send email: New Booking Request - mentor sree to [['codeconjurer09@gmail.com', 'mungaimartin122@gmail.com']]
+ERROR 2026-02-14 17:26:22,738 email_service Full traceback:
+Traceback (most recent call last):
+  File "C:\Users\HomePC\Documents\projects\holistic-family-midwife\backend\enquiries\email_service.py", line 36, in send_email
+    email = resend.Emails.send(params)
+  File "C:\Users\HomePC\Documents\projects\holistic-family-midwife\backend\venv\Lib\site-packages\resend\emails\_emails.py", line 277, in send
+    ).perform_with_content()
+      ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\HomePC\Documents\projects\holistic-family-midwife\backend\venv\Lib\site-packages\resend\request.py", line 44, in perform_with_content
+    resp = self.perform()
+  File "C:\Users\HomePC\Documents\projects\holistic-family-midwife\backend\venv\Lib\site-packages\resend\request.py", line 35, in perform
+    raise_for_code_and_type(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        code=data.get("statusCode") or 500,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        message=data.get("message", "Unknown error"),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        error_type=data.get("name", "InternalServerError"),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\HomePC\Documents\projects\holistic-family-midwife\backend\venv\Lib\site-packages\resend\exceptions.py", line 213, in raise_for_code_and_type
+    raise error_from_list(
+    ...<3 lines>...
+    )
+resend.exceptions.ValidationError: The `to` field must be a `string`.

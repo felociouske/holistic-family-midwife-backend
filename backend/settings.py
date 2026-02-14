@@ -1,25 +1,27 @@
 import os
 from pathlib import Path
 from decouple import config
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
-
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('SECRET_KEY', default='django-insecure-3*0iu8ey0tt-b=kj)ud++9k$sz6b-q*#nrgk6_vt$sbey*ztds')
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG', default=True, cast=bool)
+DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'holistic-family-midwife-frontend.vercel.app']
+ALLOWED_HOSTS = config(
+    'ALLOWED_HOSTS',
+    default='localhost,127.0.0.1'
+).split(',')
 
+# Add Railway domain and Vercel frontend
+if not DEBUG: 
+    ALLOWED_HOSTS
 
 # Application definition
-
 INSTALLED_APPS = [
     'jazzmin',
     'django.contrib.admin',
@@ -37,6 +39,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # Add WhiteNoise
     'corsheaders.middleware.CorsMiddleware', 
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -51,7 +54,7 @@ ROOT_URLCONF = 'backend.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],  # Added for email templates
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -65,21 +68,29 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'backend.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+# Use PostgreSQL in production, SQLite in development
+if config('DATABASE_URL', default=None):
+    # Production: Use Railway PostgreSQL
+    DATABASES = {
+        'default': dj_database_url.config(
+            default=config('DATABASE_URL'),
+            conn_max_age=600,
+            conn_health_checks=True,
+        )
     }
-}
-
+else:
+    # Development: Use SQLite
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
 # Password validation
-# https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -95,17 +106,13 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
-# https://docs.djangoproject.com/en/5.2/topics/i18n/
-
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'Africa/Nairobi'
 USE_I18N = True
 USE_TZ = True
 
-#CKeditor settings
+# CKEditor settings
 CKEDITOR_UPLOAD_PATH = "uploads/"
 
 CKEDITOR_CONFIGS = {
@@ -124,25 +131,48 @@ CKEDITOR_CONFIGS = {
     },
 }
 
-
-STATIC_URL = 'static/'
+# Static files (CSS, JavaScript, Images)
+STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATICFILES_DIRS = []
+
+# WhiteNoise configuration for serving static files
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+# Media files
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 # Default primary key field type
-# https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # CORS Settings
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173",
-    "http://localhost:8080",
-    "http://127.0.0.1:5173",
-    "http://127.0.0.1:8000",
-    "https://holistic-family-midwife-frontend.vercel.app",
-]
+CORS_ALLOWED_ORIGINS = config(
+    'CORS_ALLOWED_ORIGINS',
+    default='http://localhost:5173,http://localhost:8080,http://127.0.0.1:5173'
+).split(',')
 
 CORS_ALLOW_CREDENTIALS = True
+
+# Additional CORS settings for production
+if not DEBUG:
+    CORS_ALLOW_ALL_ORIGINS = False
+    CSRF_TRUSTED_ORIGINS = [
+        'https://*.railway.app',
+        'https://holistic-family-midwife-frontend.vercel.app'
+    ]
+
+# Security settings for production
+if not DEBUG:
+    SECURE_SSL_REDIRECT = True
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+    SECURE_BROWSER_XSS_FILTER = True
+    SECURE_CONTENT_TYPE_NOSNIFF = True
+    X_FRAME_OPTIONS = 'DENY'
+    SECURE_HSTS_SECONDS = 31536000
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+    SECURE_HSTS_PRELOAD = True
 
 # REST Framework Settings
 REST_FRAMEWORK = {
@@ -154,24 +184,18 @@ REST_FRAMEWORK = {
     ],
 }
 
-# ==================== EMAIL CONFIGURATION (RESEND) ====================
-# Using Resend for email delivery - no domain setup required for testing
+# Email Configuration (RESEND)
+RESEND_API_KEY = config('RESEND_API_KEY')
+DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL')
+ADMIN_EMAIL = config('ADMIN_EMAIL')
 
-# Resend API Key
-RESEND_API_KEY = config('RESEND_API_KEY', default='')
-
-# Email addresses
-DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL', default='onboarding@resend.dev')
-ADMIN_EMAIL = config('ADMIN_EMAIL', default='admin@example.com')
-
-# Initialize Resend (will be used in email_service.py)
 try:
     import resend
     resend.api_key = RESEND_API_KEY
 except ImportError:
     print("Warning: 'resend' package not installed. Run: pip install resend")
 
-# Logging configuration for email debugging
+# Logging configuration
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
@@ -201,9 +225,7 @@ LOGGING = {
     },
 }
 
-
-
-# ==================== JAZZMIN CONFIGURATION ====================
+# Jazzmin Configuration
 JAZZMIN_SETTINGS = {
     "site_title": "Holistic Family Midwife Admin",
     "site_header": "Holistic Family Midwife",
@@ -218,7 +240,7 @@ JAZZMIN_SETTINGS = {
     
     "topmenu_links": [
         {"name": "Home", "url": "admin:index", "permissions": ["auth.view_user"]},
-        {"name": "View Site", "url": "/", "new_window": True},
+        {"name": "View Site", "url": "https://holistic-family-midwife-frontend.vercel.app", "new_window": True},
     ],
     
     "show_sidebar": True,
@@ -244,16 +266,12 @@ JAZZMIN_SETTINGS = {
     "custom_js": None,
     "show_ui_builder": False,
     
-    ###############
-    # Change view #
-    ###############
-    # THIS IS THE KEY FIX - Use single_page instead of tabs
-    "changeform_format": "single",  # Changed this
+    "changeform_format": "single",
     
     "changeform_format_overrides": {
         "auth.user": "single",
         "auth.group": "single",
-        "enquiries.BlogPost": "single",  # Changed this
+        "enquiries.BlogPost": "single",
         "enquiries.Booking": "single",
     },
 }

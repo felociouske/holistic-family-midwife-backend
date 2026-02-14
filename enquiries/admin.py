@@ -26,10 +26,12 @@ class BookingAdmin(admin.ModelAdmin):
             'classes': ('collapse',)
         }),
         ('Emergency Contact', {
-            'fields': ('emergency_contact_name', 'emergency_contact_phone')
+            'fields': ('emergency_contact_name', 'emergency_contact_phone'),
+            'classes': ('collapse',)
         }),
         ('Additional', {
-            'fields': ('additional_notes',)
+            'fields': ('additional_notes',),
+            'classes': ('collapse',)
         }),
         ('Metadata', {
             'fields': ('created_at', 'updated_at'),
@@ -152,17 +154,25 @@ class ContactEnquiryAdmin(admin.ModelAdmin):
     mark_as_unread.short_description = 'Mark selected as Unread'
 
 
-
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-    list_display =['name', 'slug', 'created_at']
+    list_display = ['name', 'slug', 'created_at']
     prepopulated_fields = {'slug': ('name',)}
     search_fields = ['name']
+
+
+@admin.register(Tag)
+class TagAdmin(admin.ModelAdmin):
+    list_display = ['name', 'slug']
+    prepopulated_fields = {'slug': ('name',)}
+    search_fields = ['name']
+
 
 @admin.register(Author)
 class AuthorAdmin(admin.ModelAdmin):
     list_display = ['name', 'user', 'created_at']
     search_fields = ['name', 'user__username']
+
 
 @admin.register(BlogPost)
 class BlogPostAdmin(admin.ModelAdmin):
@@ -172,26 +182,44 @@ class BlogPostAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('title',)}
     filter_horizontal = ['tags']
     date_hierarchy = 'published_date'
+    readonly_fields = ['views_count', 'created_at', 'updated_at', 'reading_time']
     
+    # Clean fieldsets - important sections expanded, less important collapsed
     fieldsets = (
         ('Content', {
-            'fields': ('title', 'slug', 'excerpt', 'content', 'featured_image')
+            'fields': ('title', 'slug', 'excerpt', 'content', 'featured_image'),
+            'description': 'Main content of your blog post'
         }),
         ('Metadata', {
-            'fields': ('author', 'category', 'tags', 'reading_time')
+            'fields': ('author', 'category', 'tags'),
+            'description': 'Categorization and authorship'
         }),
         ('Publishing', {
-            'fields': ('status', 'is_featured', 'published_date')
+            'fields': ('status', 'is_featured', 'published_date'),
+            'description': 'Publication settings'
         }),
         ('Statistics', {
-            'fields': ('views_count',),
-            'classes': ('collapse',)
+            'fields': ('reading_time', 'views_count', 'created_at', 'updated_at'),
+            'classes': ('collapse',),
+            'description': 'Auto-generated statistics and timestamps'
         }),
     )
     
-    readonly_fields = ['views_count']
+    actions = ['publish_posts', 'unpublish_posts', 'feature_posts']
+    
+    def publish_posts(self, request, queryset):
+        queryset.update(status='published')
+    publish_posts.short_description = 'Publish selected posts'
+    
+    def unpublish_posts(self, request, queryset):
+        queryset.update(status='draft')
+    unpublish_posts.short_description = 'Unpublish selected posts'
+    
+    def feature_posts(self, request, queryset):
+        queryset.update(is_featured=True)
+    feature_posts.short_description = 'Mark selected as featured'
 
-# Customize admin site
+
 admin.site.site_header = 'Holistic Family Midwife Admin'
 admin.site.site_title = 'HFM Admin Portal'
 admin.site.index_title = 'Welcome to HFM Administration'

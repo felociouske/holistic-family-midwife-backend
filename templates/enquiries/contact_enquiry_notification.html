@@ -1,0 +1,58 @@
+{% extends 'enquiries/base.html' %}
+
+{% block title %}New Contact Enquiry - Admin Notification{% endblock %}
+
+{% block content %}
+<div class="greeting">
+    New Contact Form Submission
+</div>
+
+<p class="message">
+    A new contact enquiry has been submitted through your website contact form.
+</p>
+
+<div class="info-box">
+    <h3>👤 Contact Information</h3>
+    <div class="info-item">
+        <span class="info-label">Name:</span>
+        <span class="info-value">{{ name }}</span>
+    </div>
+    <div class="info-item">
+        <span class="info-label">Email:</span>
+        <span class="info-value">{{ email }}</span>
+    </div>
+    <div class="info-item">
+        <span class="info-label">Phone:</span>
+        <span class="info-value">{{ phone }}</span>
+    </div>
+</div>
+
+<div class="info-box">
+    <h3>📋 Enquiry Details</h3>
+    <div class="info-item">
+        <span class="info-label">Reason:</span>
+        <span class="info-value">{{ reason }}</span>
+    </div>
+    {% if due_date != 'N/A' %}
+    <div class="info-item">
+        <span class="info-label">Due Date:</span>
+        <span class="info-value">{{ due_date }}</span>
+    </div>
+    {% endif %}
+</div>
+
+<div class="info-box">
+    <h3>💬 Message</h3>
+    <p style="color: #4b5563; font-size: 14px; line-height: 1.6; white-space: pre-wrap;">{{ message }}</p>
+</div>
+
+<div style="text-align: center; margin: 30px 0;">
+    <a href="mailto:{{ email }}" class="cta-button">
+        Reply to {{ name }}
+    </a>
+</div>
+
+<p class="message" style="color: #6b7280; font-size: 13px;">
+    Response target: Within 24 hours of submission
+</p>
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends 'enquiries/base.html' %}
+
+{% block title %}New Booking Request - Admin Notification{% endblock %}
+
+{% block content %}
+<div class="greeting">
+    New Booking Request Received
+</div>
+
+<p class="message">
+    A new booking request has been submitted and requires your attention.
+</p>
+
+<div class="info-box">
+    <h3>👤 Client Information</h3>
+    <div class="info-item">
+        <span class="info-label">Name:</span>
+        <span class="info-value">{{ client_name }}</span>
+    </div>
+    <div class="info-item">
+        <span class="info-label">Email:</span>
+        <span class="info-value">{{ client_email }}</span>
+    </div>
+    <div class="info-item">
+        <span class="info-label">Phone:</span>
+        <span class="info-value">{{ client_phone }}</span>
+    </div>
+</div>
+
+<div class="info-box">
+    <h3>📅 Booking Information</h3>
+    <div class="info-item">
+        <span class="info-label">Service Type:</span>
+        <span class="info-value">{{ service }}</span>
+    </div>
+    <div class="info-item">
+        <span class="info-label">Preferred Date:</span>
+        <span class="info-value">{{ preferred_date }}</span>
+    </div>
+    <div class="info-item">
+        <span class="info-label">Preferred Time:</span>
+        <span class="info-value">{{ preferred_time }}</span>
+    </div>
+</div>
+
+{% if additional_info %}
+<div class="info-box">
+    <h3>💬 Additional Information</h3>
+    <p style="color: #4b5563; font-size: 14px; line-height: 1.6;">
+        {{ additional_info }}
+    </p>
+</div>
+{% endif %}
+
+<div style="text-align: center; margin: 30px 0;">
+    <a href="http://localhost:8000/admin" class="cta-button">
+        Go to Admin Panel
+    </a>
+</div>
+
+<p class="message" style="color: #6b7280; font-size: 13px;">
+    Please review this booking and contact the client within 24 hours to confirm the appointment.
+</p>
+{% endblock %}

@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.validators import RegexValidator
+from ckeditor_uploader.fields import RichTextUploadingField
 from django.utils.text import slugify
 from django.contrib.auth.models import User
 from django.utils import timezone
@@ -177,7 +178,7 @@ class BlogPost(models.Model):
     title = models.CharField(max_length=200)
     slug = models.SlugField(max_length=200, unique=True, blank=True)
     excerpt = models.TextField(max_length=300, help_text="Brief summary of the post")
-    content = models.TextField()
+    content = RichTextUploadingField()
     featured_image = models.ImageField(upload_to='blog/featured/', blank=True, null=True)
     author = models.ForeignKey(Author, on_delete=models.CASCADE, related_name='posts')
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, related_name='posts')

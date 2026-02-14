@@ -1,0 +1,73 @@
+{% extends 'enquiries/base.html' %}
+
+{% block title %}Booking Confirmation - Holistic Family Midwife{% endblock %}
+
+{% block content %}
+<div class="greeting">
+    Dear {{ client_name }},
+</div>
+
+<p class="message">
+    Thank you for choosing Holistic Family Midwife! We're delighted to confirm that we've received your booking request.
+</p>
+
+<div class="info-box">
+    <h3>📋 Booking Details</h3>
+    <div class="info-item">
+        <span class="info-label">Service:</span>
+        <span class="info-value">{{ service }}</span>
+    </div>
+    <div class="info-item">
+        <span class="info-label">Preferred Date:</span>
+        <span class="info-value">{{ preferred_date }}</span>
+    </div>
+    <div class="info-item">
+        <span class="info-label">Preferred Time:</span>
+        <span class="info-value">{{ preferred_time }}</span>
+    </div>
+    <div class="info-item">
+        <span class="info-label">Status:</span>
+        <span class="info-value" style="color: #f59e0b; font-weight: 600;">Pending Confirmation</span>
+    </div>
+</div>
+
+<p class="message">
+    Our team is currently reviewing your request. We will contact you within the next <strong>24 hours</strong> to confirm your appointment and provide any additional information you may need.
+</p>
+
+<div class="divider"></div>
+
+<h3 style="color: #1f2937; font-size: 16px; margin-bottom: 15px;">What Happens Next?</h3>
+<p class="message">
+    ✓ We'll review your booking details<br>
+    ✓ Confirm your appointment time<br>
+    ✓ Send you preparation guidelines<br>
+    ✓ Answer any questions you may have
+</p>
+
+<div class="contact-info">
+    <h4>Need to reach us?</h4>
+    <div class="contact-item">
+        <strong>Phone:</strong> {{ phone }}
+    </div>
+    <div class="contact-item">
+        <strong>Email:</strong> {{ email }}
+    </div>
+    <div class="contact-item">
+        <strong>Website:</strong> {{ website }}
+    </div>
+</div>
+
+<p class="message" style="margin-top: 30px; color: #6b7280; font-size: 14px;">
+    If you need to make any changes to your booking or have questions, please don't hesitate to contact us.
+</p>
+
+<p class="message" style="margin-top: 25px; font-weight: 500;">
+    We look forward to supporting you on your journey!
+</p>
+
+<p class="message" style="margin-top: 15px;">
+    Warm regards,<br>
+    <strong>The Holistic Family Midwife Team</strong>
+</p>
+{% endblock %}

@@ -155,12 +155,7 @@ CORS_ALLOWED_ORIGINS = config(
 CORS_ALLOW_CREDENTIALS = True
 
 # Additional CORS settings for production
-if not DEBUG:
-    CORS_ALLOW_ALL_ORIGINS = False
-    CSRF_TRUSTED_ORIGINS = [
-        'https://*.railway.app',
-        'https://holistic-family-midwife-frontend.vercel.app'
-    ]
+CSRF_TRUSTED_ORIGINS = os.getenv("CSRF_TRUSTED_ORIGINS", "").split(",")
 
 # Security settings for production
 if not DEBUG:

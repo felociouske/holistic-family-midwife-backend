@@ -4,7 +4,8 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('', admin.site.urls),  # Admin at root
+    path('admin/', admin.site.urls),  # Also keep /admin for convenience
     path('api/', include('enquiries.urls')),
     path('ckeditor/', include('ckeditor_uploader.urls')),
 ]

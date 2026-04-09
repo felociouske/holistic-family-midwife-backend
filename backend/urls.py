@@ -2,10 +2,11 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from django.views.generic.base import RedirectView
 
 urlpatterns = [
-    path('', admin.site.urls),  # Admin at root
-    path('admin/', admin.site.urls),  # Also keep /admin for convenience
+    path('', RedirectView.as_view(url='/admin/', permanent=False)),  # root redirects to admin
+    path('admin/', admin.site.urls),
     path('api/', include('enquiries.urls')),
     path('ckeditor/', include('ckeditor_uploader.urls')),
 ]

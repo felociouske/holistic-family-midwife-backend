@@ -17,10 +17,6 @@ ALLOWED_HOSTS = config(
     default='localhost,127.0.0.1'
 ).split(',')
 
-# Add Railway domain and Vercel frontend
-if not DEBUG: 
-    ALLOWED_HOSTS
-
 # Application definition
 INSTALLED_APPS = [
     'jazzmin',
@@ -154,8 +150,11 @@ CORS_ALLOWED_ORIGINS = config(
 
 CORS_ALLOW_CREDENTIALS = True
 
-# Additional CORS settings for production
-CSRF_TRUSTED_ORIGINS = os.getenv("CSRF_TRUSTED_ORIGINS", "").split(",")
+# CSRF Trusted Origins 
+CSRF_TRUSTED_ORIGINS = config(
+    'CSRF_TRUSTED_ORIGINS',
+    default='http://localhost:5173'
+).split(',')
 
 # Security settings for production
 if not DEBUG:

@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from datetime import date
+from cloudinary.utils import cloudinary_url
 from .models import Booking, GeneralEnquiry, ContactEnquiry, BlogPost, Category, Tag, Author
 
 class BookingSerializer(serializers.ModelSerializer):
@@ -43,9 +44,7 @@ class AuthorSerializer(serializers.ModelSerializer):
 
     def get_avatar(self, obj):
         if obj.avatar:
-            request = self.context.get('request')
-            if request:
-                return request.build_absolute_uri(obj.avatar.url)
+            return obj.avatar.url
         return None
 
 class CategorySerializer(serializers.ModelSerializer):
@@ -74,9 +73,7 @@ class BlogPostListSerializer(serializers.ModelSerializer):
 
     def get_featured_image(self, obj):
         if obj.featured_image:
-            request = self.context.get('request')
-            if request:
-                return request.build_absolute_uri(obj.featured_image.url)
+            return obj.featured_image.url
         return None
 
 class BlogPostDetailSerializer(serializers.ModelSerializer):
@@ -95,7 +92,5 @@ class BlogPostDetailSerializer(serializers.ModelSerializer):
 
     def get_featured_image(self, obj):
         if obj.featured_image:
-            request = self.context.get('request')
-            if request:
-                return request.build_absolute_uri(obj.featured_image.url)
+            return obj.featured_image.url
         return None

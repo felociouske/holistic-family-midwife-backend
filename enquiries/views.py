@@ -77,8 +77,6 @@ def health_check(request):
     return Response({'status': 'ok', 'message': 'API is running'})
 
 
-# ==================== BLOG VIEWS - UNCHANGED ====================
-
 class BlogPostPagination(PageNumberPagination):
     page_size = 9
     page_size_query_param = 'page_size'

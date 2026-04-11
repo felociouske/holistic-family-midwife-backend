@@ -4,6 +4,7 @@ from ckeditor_uploader.fields import RichTextUploadingField
 from django.utils.text import slugify
 from django.contrib.auth.models import User
 from django.utils import timezone
+from cloudinary.models import CloudinaryField
 
 
 class Booking(models.Model):
@@ -160,7 +161,7 @@ class Author(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='author_profile')
     name = models.CharField(max_length=200)
     bio = models.TextField(blank=True)
-    avatar = models.ImageField(upload_to='authors/', blank=True, null=True)
+    avatar = CloudinaryField('image', folder='authors/', blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -179,7 +180,7 @@ class BlogPost(models.Model):
     slug = models.SlugField(max_length=200, unique=True, blank=True)
     excerpt = models.TextField(max_length=300, help_text="Brief summary of the post")
     content = RichTextUploadingField()
-    featured_image = models.ImageField(upload_to='blog/featured/', blank=True, null=True)
+    featured_image = CloudinaryField('image', folder='blog/featured/', blank=True, null=True)
     author = models.ForeignKey(Author, on_delete=models.CASCADE, related_name='posts')
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, related_name='posts')
     tags = models.ManyToManyField(Tag, related_name='posts', blank=True)

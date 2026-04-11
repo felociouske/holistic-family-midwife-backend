@@ -31,11 +31,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'corsheaders',
+    'cloudinary',
+    'cloudinary_storage',
     'enquiries',
     'ckeditor',
     'ckeditor_uploader',
-    'cloudinary',
-    'cloudinary_storage',
 ]
 
 cloudinary.config(

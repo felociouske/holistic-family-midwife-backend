@@ -136,7 +136,9 @@ CKEDITOR_CONFIGS = {
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
-STATICFILES_DIRS = []
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static")
+]
 
 # WhiteNoise configuration for serving static files
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
@@ -242,7 +244,7 @@ JAZZMIN_SETTINGS = {
     
     "topmenu_links": [
         {"name": "Home", "url": "admin:index", "permissions": ["auth.view_user"]},
-        {"name": "View Site", "url": "https://holistic-family-midwife-frontend.vercel.app", "new_window": True},
+        {"name": "View Site", "url": "https://www.holisticfamilymidwife.com", "new_window": True},
     ],
     
     "show_sidebar": True,
@@ -264,7 +266,7 @@ JAZZMIN_SETTINGS = {
     "default_icon_parents": "fas fa-chevron-circle-right",
     "default_icon_children": "fas fa-circle",
     "related_modal_active": False,
-    "custom_css": None,
+    "custom_css": "admin/css/custom_admin.css",
     "custom_js": None,
     "show_ui_builder": False,
     
@@ -284,14 +286,14 @@ JAZZMIN_UI_TWEAKS = {
     "body_small_text": False,
     "brand_small_text": False,
     "brand_colour": "navbar-success",
-    "accent": "accent-teal",
+    "accent": "accent-pink",
     "navbar": "navbar-white navbar-light",
     "no_navbar_border": False,
     "navbar_fixed": True,
     "layout_boxed": False,
     "footer_fixed": False,
     "sidebar_fixed": True,
-    "sidebar": "sidebar-dark-success",
+    "sidebar": "sidebar-light-primary",
     "sidebar_nav_small_text": False,
     "sidebar_disable_expand": False,
     "sidebar_nav_child_indent": False,
@@ -299,7 +301,7 @@ JAZZMIN_UI_TWEAKS = {
     "sidebar_nav_legacy_style": False,
     "sidebar_nav_flat_style": False,
     "theme": "flatly",
-    "dark_mode_theme": None,
+    "default_theme_mode": "light",
     "button_classes": {
         "primary": "btn-primary",
         "secondary": "btn-secondary",
